@@ -1,16 +1,18 @@
 <button (click)="toPdf()">export</button>
+<button (click)="onInsertTable()">Insert table</button>
 <div class="container">
-  <div class="col">
-    <div #container style="width:{{pageSize.height}}px;">
-      <quill-editor [(ngModel)]="htmlText" placeholder="Enter Text" [modules]="quillConfig"
+  <div class="col" style="width:{{pageSize.height}}px;">
+    <div #container>
+      <!-- <quill-editor #editor [(ngModel)]="htmlText" placeholder="Enter Text" (onEditorCreated)="editorCreated($event)"
         (onSelectionChanged)="onSelectionChanged($event)" (onContentChanged)="onContentChanged($event);pageBreak();">
-      </quill-editor>
+      </quill-editor> -->
+      <div #editable></div>
       <div style="position:absolute;top:{{pBreak}}px;height:0px;width:100%;border:1px solid black;"
         *ngFor="let pBreak of pBreaks"></div>
     </div>
-    <div id="section-to-print" style="width:{{pageSize.height}}px;">
-      <!-- <div [innerHTML]="htmlText"></div> -->
-      <quill-view-html [content]="htmlText" theme="snow"></quill-view-html>
+    <div id="section-to-print" class="ql-container ql-snow" style="width:{{pageSize.height}}px;">
+      <div [innerHTML]="htmlText"></div>
+      <!-- <quill-view-html [content]="htmlText" theme="snow"></quill-view-html> -->
     </div>
   </div>
 </div>
